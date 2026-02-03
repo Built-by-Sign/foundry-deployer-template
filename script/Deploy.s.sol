@@ -34,10 +34,7 @@ contract Deploy is DeployHelper {
 
         // Read-only verification (outside broadcast)
         require(example.value() == INITIAL_VALUE, "Initialization failed");
-        require(
-            keccak256(bytes(example.version())) == keccak256(bytes("1.0.0-ExampleContract")),
-            "Version mismatch"
-        );
+        require(keccak256(bytes(example.version())) == keccak256(bytes(example.VERSION())), "Version mismatch");
     }
 
     /// @dev Called by deploy() for atomic initialization to prevent frontrunning.

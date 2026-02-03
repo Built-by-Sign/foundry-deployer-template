@@ -10,6 +10,8 @@ fs_permissions = [
     { access = "read-write", path = "./deployments/" },
     { access = "read", path = "./" }
 ]
+# FFI is required by foundry-deployer — DeployHelper uses FFI to read/write deployment artifacts.
+# The CI profile below disables FFI for tests where it is not needed.
 ffi = true
 
 [profile.ci]

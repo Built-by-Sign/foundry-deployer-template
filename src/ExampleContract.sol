@@ -11,6 +11,9 @@ import {IVersionable} from "foundry-deployer/interfaces/IVersionable.sol";
  * @dev Implements IVersionable for deployment tracking and extends Ownable for access control
  */
 contract ExampleContract is Ownable, Initializable, IVersionable {
+    /// @dev Format: "{major}.{minor}.{patch}-{ContractName}"
+    string public constant VERSION = "1.0.0-ExampleContract";
+
     uint256 public value;
 
     event ValueUpdated(uint256 oldValue, uint256 newValue);
@@ -36,8 +39,7 @@ contract ExampleContract is Ownable, Initializable, IVersionable {
         emit ValueUpdated(oldValue, _newValue);
     }
 
-    /// @dev Format: "{major}.{minor}.{patch}-{ContractName}"
     function version() external pure override returns (string memory) {
-        return "1.0.0-ExampleContract";
+        return VERSION;
     }
 }

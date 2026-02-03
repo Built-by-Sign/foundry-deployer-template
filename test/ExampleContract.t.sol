@@ -26,7 +26,7 @@ contract ExampleContractTest is Test {
     }
 
     function test_Version() public view {
-        assertEq(example.version(), "1.0.0-ExampleContract");
+        assertEq(example.version(), example.VERSION());
     }
 
     function test_SetValue() public {

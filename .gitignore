@@ -2,6 +2,7 @@
 out/
 cache/
 broadcast/
+lcov.info
 
 # Environment
 .env
