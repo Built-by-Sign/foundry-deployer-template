@@ -1,0 +1,3 @@
+forge-std/=lib/forge-std/src/
+foundry-deployer/=lib/foundry-deployer/src/
+solady/=lib/solady/src/
