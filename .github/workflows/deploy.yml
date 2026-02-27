@@ -45,23 +45,8 @@ on:
         required: false
         type: string
         default: 'chore: deployment artifacts'
-      prod_owner:
-        description: 'Production owner address (overrides vars.PROD_OWNER)'
-        required: false
-        type: string
-        default: ''
-      mainnet_chain_ids:
-        description: 'Mainnet chain IDs (overrides vars.MAINNET_CHAIN_IDS)'
-        required: false
-        type: string
-        default: ''
-      force_deploy:
-        description: 'Force deployment on mainnet'
-        required: false
-        type: boolean
-        default: false
-      allowed_deployment_sender:
-        description: 'Allowed sender address (overrides vars.ALLOWED_DEPLOYMENT_SENDER)'
+      version_postfix:
+        description: 'Postfix appended to VERSION constants before compilation (e.g., -beta, -rc1)'
         required: false
         type: string
         default: ''
@@ -97,7 +82,7 @@ jobs:
 
   deploy:
     needs: resolve-network
-    uses: EthSign/foundry-deployer/.github/workflows/deploy.yml@a22bdcafd5f65f6b0166a18dc4e6e702886d9a8d
+    uses: EthSign/foundry-deployer/.github/workflows/deploy.yml@cf965c5233ac828b75b22f885186b162ea0d3dd9
     with:
       network_name: ${{ needs.resolve-network.outputs.network_name }}
       chain_id: ${{ needs.resolve-network.outputs.chain_id }}
@@ -107,10 +92,7 @@ jobs:
       forge_flags: ${{ inputs.forge_flags }}
       commit_deployment: ${{ inputs.commit_deployment }}
       commit_message: ${{ inputs.commit_message }}
-      prod_owner: ${{ inputs.prod_owner }}
-      mainnet_chain_ids: ${{ inputs.mainnet_chain_ids }}
-      force_deploy: ${{ inputs.force_deploy && 'true' || '' }}
-      allowed_deployment_sender: ${{ inputs.allowed_deployment_sender }}
+      version_postfix: ${{ inputs.version_postfix }}
     secrets:
       rpc_url: ${{ secrets[format('{0}_RPC_URL', inputs.network)] }}
       deployment_private_key: ${{ secrets.PRIVATE_KEY }}
