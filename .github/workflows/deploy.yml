@@ -82,7 +82,7 @@ jobs:
 
   deploy:
     needs: resolve-network
-    uses: EthSign/foundry-deployer/.github/workflows/deploy.yml@cf965c5233ac828b75b22f885186b162ea0d3dd9
+    uses: EthSign/foundry-deployer/.github/workflows/deploy.yml@d84290140f18471a31dc742c21ae12eb80741bb8
     with:
       network_name: ${{ needs.resolve-network.outputs.network_name }}
       chain_id: ${{ needs.resolve-network.outputs.chain_id }}
