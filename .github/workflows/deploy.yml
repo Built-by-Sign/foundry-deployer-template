@@ -82,6 +82,8 @@ jobs:
 
   deploy:
     needs: resolve-network
+    permissions:
+      contents: write
     uses: Built-by-Sign/foundry-deployer/.github/workflows/deploy.yml@d84290140f18471a31dc742c21ae12eb80741bb8
     with:
       network_name: ${{ needs.resolve-network.outputs.network_name }}
